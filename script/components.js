@@ -83,9 +83,8 @@ class MyNav extends HTMLElement {
     }
 
     render() {
-        const template = document.createElement('template');
 
-        template.innerHTML = `
+        this.shadowRoot.innerHTML = `
             <style>
 
                 :host {
@@ -98,24 +97,31 @@ class MyNav extends HTMLElement {
                 }
 
                 .container {
+
                     max-width: 1200px;
+
                     margin: 0 auto;
 
                     display: flex;
-                    flex-direction: column;
-
                     align-items: center;
-                    justify-content: center;
+                    justify-content: space-between;
 
-                    padding: 1rem;
+                    padding: 1rem 2rem;
+
+                    gap: 2rem;
                 }
 
                 .brand {
+
                     color: black;
+
                     text-decoration: none;
+
                     font-weight: bold;
+
                     font-size: 1.5rem;
-                    margin-bottom: 0.5rem;
+
+                    white-space: nowrap;
                 }
 
                 .brand:hover {
@@ -123,16 +129,24 @@ class MyNav extends HTMLElement {
                 }
 
                 .nav-menu {
+
                     display: flex;
-                    justify-content: center;
+
                     align-items: center;
+
+                    justify-content: flex-end;
+
                     flex-wrap: wrap;
 
-                    gap: 0.5rem;
+                    gap: 1rem;
+
+                    flex: 1;
                 }
 
                 ::slotted(.nav-link) {
+
                     color: #212529;
+
                     text-decoration: none;
 
                     padding: 0.75rem 1rem;
@@ -142,35 +156,72 @@ class MyNav extends HTMLElement {
                     transition: all 0.3s ease;
 
                     font-weight: 500;
+
                     font-size: 1rem;
                 }
 
                 ::slotted(.nav-link:hover) {
+
                     color: #212529;
+
                     background-color: rgba(255, 255, 255, 0.35);
                 }
 
                 ::slotted(.nav-link.active) {
+
                     background-color: rgba(13, 110, 253, 0.25);
+
                     border-bottom: 3px solid #0d6efd;
+
                     font-weight: 600;
                 }
 
                 ::slotted(.nav-link.disabled) {
+
                     color: #666666;
+
                     cursor: not-allowed;
+
                     opacity: 0.6;
                 }
 
-                @media (max-width: 768px) {
+                /* TABLET */
+                @media (max-width: 900px) {
+
+                    .container {
+
+                        flex-direction: column;
+
+                        align-items: center;
+
+                        gap: 1rem;
+                    }
 
                     .nav-menu {
+
+                        justify-content: center;
+                    }
+                }
+
+                /* CELULAR */
+                @media (max-width: 600px) {
+
+                    .container {
+
+                        padding: 1rem;
+                    }
+
+                    .nav-menu {
+
                         flex-direction: column;
+
                         width: 100%;
                     }
 
                     ::slotted(.nav-link) {
+
                         width: 100%;
+
                         text-align: center;
                     }
                 }
@@ -182,23 +233,23 @@ class MyNav extends HTMLElement {
                 <div class="container">
 
                     <a class="brand" href="/" data-home-link>
+
                         <slot name="brand">
                             Disciplina Web
                         </slot>
+
                     </a>
 
                     <div class="nav-menu">
+
                         <slot name="items"></slot>
+
                     </div>
 
                 </div>
 
             </nav>
         `;
-
-        this.shadowRoot.appendChild(
-            template.content.cloneNode(true)
-        );
 
         this.shadowRoot
             .querySelector('[data-home-link]')
@@ -216,8 +267,6 @@ class MyNav extends HTMLElement {
         return 'index.html';
     }
 }
-
-customElements.define('my-nav', MyNav);
 
 // ============================================
 // WEB COMPONENT: MyFooter
