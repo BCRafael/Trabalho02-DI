@@ -84,8 +84,10 @@ class MyNav extends HTMLElement {
 
     render() {
         const template = document.createElement('template');
+
         template.innerHTML = `
             <style>
+
                 :host {
                     display: block;
                 }
@@ -98,18 +100,22 @@ class MyNav extends HTMLElement {
                 .container {
                     max-width: 1200px;
                     margin: 0 auto;
+
                     display: flex;
+                    flex-direction: column;
+
                     align-items: center;
-                    justify-content: space-between;
-                    padding: 0 1rem;
+                    justify-content: center;
+
+                    padding: 1rem;
                 }
 
                 .brand {
                     color: black;
                     text-decoration: none;
                     font-weight: bold;
-                    font-size: 1.25rem;
-                    padding: 1rem 0;
+                    font-size: 1.5rem;
+                    margin-bottom: 0.5rem;
                 }
 
                 .brand:hover {
@@ -118,89 +124,100 @@ class MyNav extends HTMLElement {
 
                 .nav-menu {
                     display: flex;
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                    gap: 0;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    gap: 0.5rem;
                 }
 
-                .nav-item {
-                    margin: 0;
-                }
-
-                .nav-link {
+                ::slotted(.nav-link) {
                     color: #212529;
                     text-decoration: none;
-                    padding: 1rem 1.25rem;
-                    display: block;
+
+                    padding: 0.75rem 1rem;
+
+                    border-radius: 8px;
+
                     transition: all 0.3s ease;
+
                     font-weight: 500;
                     font-size: 1rem;
                 }
 
-                .nav-link:hover {
+                ::slotted(.nav-link:hover) {
                     color: #212529;
-                    background-color: rgba(255, 255, 255, 0.25);
-                    font-weight: 600;
+                    background-color: rgba(255, 255, 255, 0.35);
                 }
 
-                .nav-link.active {
-                    color: #212529;
-                    background-color: rgba(13, 110, 253, 0.3);
+                ::slotted(.nav-link.active) {
+                    background-color: rgba(13, 110, 253, 0.25);
                     border-bottom: 3px solid #0d6efd;
                     font-weight: 600;
                 }
 
-                .nav-link.disabled {
-                    color: #aaaaaa;
+                ::slotted(.nav-link.disabled) {
+                    color: #666666;
                     cursor: not-allowed;
                     opacity: 0.6;
-                    font-weight: 400;
                 }
 
                 @media (max-width: 768px) {
-                    .container {
-                        flex-wrap: wrap;
-                    }
 
                     .nav-menu {
-                        width: 100%;
                         flex-direction: column;
-                        gap: 0;
+                        width: 100%;
                     }
 
-                    .nav-link {
-                        border-bottom: 1px solid #435493;
+                    ::slotted(.nav-link) {
+                        width: 100%;
+                        text-align: center;
                     }
                 }
+
             </style>
 
             <nav>
+
                 <div class="container">
+
                     <a class="brand" href="/" data-home-link>
-                        <slot name="brand">Disciplina Web</slot>
+                        <slot name="brand">
+                            Disciplina Web
+                        </slot>
                     </a>
-                    <ul class="nav-menu">
+
+                    <div class="nav-menu">
                         <slot name="items"></slot>
-                    </ul>
+                    </div>
+
                 </div>
+
             </nav>
         `;
 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadowRoot.appendChild(
+            template.content.cloneNode(true)
+        );
 
-        // Ajusta links de home conforme necessário
-        this.shadowRoot.querySelector('[data-home-link]').href = this.getHomeLink();
+        this.shadowRoot
+            .querySelector('[data-home-link]')
+            .href = this.getHomeLink();
     }
 
     getHomeLink() {
+
         const path = window.location.pathname;
+
         if (path.includes('/pages/')) {
             return '../index.html';
         }
+
         return 'index.html';
     }
 }
+
+customElements.define('my-nav', MyNav);
 
 // ============================================
 // WEB COMPONENT: MyFooter
