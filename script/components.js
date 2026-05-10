@@ -26,7 +26,7 @@ class MyHeader extends HTMLElement {
                 }
 
                 header {
-                    background-color: #0d6efd;
+                    background-color: #000000;
                     color: white;
                     padding: 1.5rem 1rem;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -91,7 +91,7 @@ class MyNav extends HTMLElement {
                 }
 
                 nav {
-                    background-color: #212529;
+                    background-color: #68ea66;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
@@ -105,7 +105,7 @@ class MyNav extends HTMLElement {
                 }
 
                 .brand {
-                    color: white;
+                    color: black;
                     text-decoration: none;
                     font-weight: bold;
                     font-size: 1.25rem;
@@ -129,7 +129,7 @@ class MyNav extends HTMLElement {
                 }
 
                 .nav-link {
-                    color: #ffffff;
+                    color: #212529;
                     text-decoration: none;
                     padding: 1rem 1.25rem;
                     display: block;
@@ -139,13 +139,13 @@ class MyNav extends HTMLElement {
                 }
 
                 .nav-link:hover {
-                    color: #ffffff;
+                    color: #212529;
                     background-color: rgba(255, 255, 255, 0.25);
                     font-weight: 600;
                 }
 
                 .nav-link.active {
-                    color: #ffffff;
+                    color: #212529;
                     background-color: rgba(13, 110, 253, 0.3);
                     border-bottom: 3px solid #0d6efd;
                     font-weight: 600;
@@ -226,8 +226,8 @@ class MyFooter extends HTMLElement {
                 }
 
                 footer {
-                    background-color: #212529;
-                    color: #adb5bd;
+                    background-color: #a1da87;
+                    color: #212529;
                     padding: 2rem 1rem;
                     border-top: 1px solid #404249;
                 }
@@ -245,7 +245,7 @@ class MyFooter extends HTMLElement {
                 }
 
                 .footer-section h3 {
-                    color: white;
+                    color: black;
                     margin-bottom: 1rem;
                     font-size: 1.1rem;
                 }
@@ -261,7 +261,7 @@ class MyFooter extends HTMLElement {
                 }
 
                 .footer-section a {
-                    color: #adb5bd;
+                    color: #212529;
                     text-decoration: none;
                     transition: color 0.3s ease;
                 }
